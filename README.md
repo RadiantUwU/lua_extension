@@ -6,7 +6,7 @@
  * [Downloading](#downloading)
  * [Documentation](#docs)
     * [LuaRuntimeController](#luaruntimecontroller)
-    * [Other Classes](#Otherclasses)
+    * [LuaCrypto](#luacrypto)
 
 ## Before downloading
 
@@ -65,9 +65,9 @@ Simply go to the tab on the right with releases, you should find already package
 
 This is the core of this library.
 
-### Other classes
 
-#### LuaCrypto
+
+### LuaCrypto
 
 Most of the times when it asks for a PackedByteArray it has instead been replaced with a string.
 
