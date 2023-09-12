@@ -74,6 +74,7 @@ This is the core of this library.
 
 `restore() -> void`
 > Sets hook to its default hook.
+
 `suspend_all() -> void`
 > Suspends all threads in lua state using a hook.
 
