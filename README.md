@@ -6,7 +6,7 @@
  * [Downloading](#downloading)
  * [Documentation](#docs)
     * [LuaRuntimeController](#luaruntimecontroller)
-    * [Other Classes](#Other_classes)
+    * [Other Classes](#Otherclasses)
 
 ## Before downloading
 
