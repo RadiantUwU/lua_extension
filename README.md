@@ -68,14 +68,18 @@ This is the core of this library.
 
 `_typeof_str_lua(v: Variant) -> String`
 > Returns how lua would represent this type.
+
 `set_lua_hook(hook: Callable, flags: int = 0, count: int = 0)`
 > Sets `_lua_hook` and runs `restore()`.
+
 `restore() -> void`
 > Sets hook to its default hook.
 `suspend_all() -> void`
 > Suspends all threads in lua state using a hook.
+
 `terminate_all() -> void`
 > Terminate all threads in lua state using a hook by constantly raising errors till it exits. Core functions are protected.
+
 `run_as_user_main_thread(code: String) -> LuaError`
 > Runs in userspace the code as the main thread.
 
