@@ -7,6 +7,7 @@
  * [Documentation](#docs)
     * [LuaRuntimeController](#luaruntimecontroller)
     * [LuaCrypto](#luacrypto)
+    * [LuaCryptoKey](#luacryptokey)
 
 ## Before downloading
 
@@ -29,7 +30,7 @@ By default, these built-in libraries have been modified or completely removed to
 
 ## Features
 
- * Yielding of the state or completely terminating it externally (may work from another thread as long as the hook has not been changed through debug.sethook)
+ * Yielding of the state or completely terminating it externally (Not thread safe).
     * **Note:** Run `LuaRuntimeController.restore()` after a yield/terminate so it doesn't immedieately yield/terminate again.
  * `getfenv` and `setfenv` implementations in Lua 5.4, as well as a `protect_fn` to protect function enviroments from either being read or written to. You can also use `is_fn_protected` to check if a function is protected.
     * **Note:** The core layer functions `_getfenv` and `_setfenv` completely bypass `protect_fn`.
@@ -65,7 +66,12 @@ Simply go to the tab on the right with releases, you should find already package
 
 This is the core of this library.
 
-
+ * `_typeof_str_lua(v: Variant) -> String` Returns how lua would represent this type.
+ * `set_lua_hook(hook: Callable, flags: int = 0, count: int = 0)` Sets `_lua_hook` and runs `restore()`.
+ * `restore() -> void` Sets hook to its default hook.
+ * `suspend_all() -> void` Suspends all threads in lua state using a hook.
+ * `terminate_all() -> void` Terminate all threads in lua state using a hook by constantly raising errors till it exits. Core functions are protected.
+ * `run_as_user_main_thread(code: String) -> LuaError` Runs in userspace the code as the main thread.
 
 ### LuaCrypto
 
