@@ -250,6 +250,11 @@ func terminate_all()->void:
 	_request_hook_change(_terminate_hook,LuaAPI.HOOK_MASK_COUNT,512)
 	_mutex.unlock()
 
+func restore()->void:
+	_mutex.lock()
+	api.set_hook(_normal_hook,LuaAPI.HOOK_MASK_COUNT,512)
+	_mutex.unlock()
+
 func _suspend_all()->void:
 	_mutex.lock()
 	api.set_hook(_suspend_hook,LuaAPI.HOOK_MASK_COUNT,1)
