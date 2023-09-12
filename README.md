@@ -1,8 +1,18 @@
 # lua_extension
 
-## A note before
+#### Contents
+ * [Dependencies](#dependencies)
+
+## Dependencies
+
+This library depends on https://github.com/WeaselGames/godot_luaAPI
+
+## Before downloading
 
 This software is provided "as is" and if you do find any security vulnerabilities please disclose them to me **privately** over at [my guilded](https://www.guilded.gg/u/radiantuwu).
+
+## Downloading
+
 
 ## Other classes
 
