@@ -190,7 +190,8 @@ func _print_error(s: String)->void:
 	printerr(s)
 	err_log.emit(s)
 
-func bind(l: LuaAPI)->void:
+func _init()->void:
+	var l = LuaAPI.new()
 	_mutex.lock()
 	l.set_hook(_normal_hook,LuaAPI.HOOK_MASK_COUNT,512)
 	assert(not api,"LuaAPI already bound.")
