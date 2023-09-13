@@ -106,7 +106,7 @@ do
             protect_fn(debug.getinfo(2,"f").func)
             _setfenv(2,core_env)
         else
-            log_error("Attempt to enter core layer with an invalid key.")
+            core_env.log_error("Attempt to enter core layer with an invalid key.")
             coroutine.terminate()
         end
     end
@@ -120,7 +120,7 @@ do
         if core_env.crypto.constant_time_compare(core_env.core_key,key) then
             core_env.load(code,"(corespace)","t",core_env)()
         else
-            log_error("Attempt to enter core layer with an invalid key.")
+            core_env.log_error("Attempt to enter core layer with an invalid key.")
             coroutine.terminate()
         end
     end
@@ -134,7 +134,7 @@ do
             _setfenv(fn,core_env)
             return fn(...)
         else
-            log_error("Attempt to enter core layer with an invalid key.")
+            core_env.log_error("Attempt to enter core layer with an invalid key.")
             coroutine.terminate()
         end
     end
@@ -142,7 +142,7 @@ do
         if core_env.crypto.constant_time_compare(core_env.core_key,key) then
             return core_env.coroutine.create(core_env.load(code,"(corespace)","t",core_env))
         else
-            log_error("Attempt to enter core layer with an invalid key.")
+            core_env.log_error("Attempt to enter core layer with an invalid key.")
             coroutine.terminate()
         end
     end
@@ -156,7 +156,7 @@ do
             _setfenv(fn,core_env)
             return core_env.coroutine.create(fn)
         else
-            log_error("Attempt to enter core layer with an invalid key.")
+            core_env.log_error("Attempt to enter core layer with an invalid key.")
             coroutine.terminate()
         end
     end
@@ -523,7 +523,13 @@ do
         user_env.warn = print_serial(core_env._warn_str)
         core_env.warn = user_env.warn
         user_env.log_error = print_serial(core_env._err_str)
-        core_env.log_error = user_env.logerror
+        core_env.log_error = user_env.log_error
+        user_env._print_str = nil
+        user_env._warn_str = nil
+        user_env._err_str = nil
+        core_env._print_str = nil
+        core_env._warn_str = nil
+        core_env._err_str = nil
         -- load user_env by default
         core_env.change_user_env(core_env.create_new_user_env())
     end
